@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
+import "./css-override";
+
 const GlobalStyle = createGlobalStyle`
   ${reset};
 
@@ -8,46 +10,36 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  /* html, body, #root {
-    width: 100%;
-    height: 100%;
-
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #111111;
-
-    margin: 0;
-    padding: 0;
-
-    overflow: hidden;
-  }  */
-
   html {
     height: 100%;
-
+    width: 100%;
+    
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
-    color: #111111;
-
+    color: #000;
+    
     overflow: hidden;
+    /* font-size: 12px; */
+    /* color: #111111; */
+    /* padding: 0; */
+    /* margin: 0; */
+  }
 
-    body {
-      height: 100%;
+  body, #root {
+    height: inherit;
+    width: inherit;
 
-      #root {
-        height: 100%;
-      /* margin: 0;
-      padding: 0; */
-      }
-    }
+    user-select: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   /* Scroll */
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
@@ -60,6 +52,19 @@ const GlobalStyle = createGlobalStyle`
   }
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.2);
+  } */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #b0b1b5;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
   }
 `;
 
