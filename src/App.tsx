@@ -1,25 +1,34 @@
-import { GlobalStyle } from "global";
-import styled from "styled-components/macro";
+import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ThemeProvider } from "styled-components/macro";
 
-const Container = styled.div`
-  height: 100%;
+import { GlobalStyle, theme } from "styles";
+import Home from "./components/pages/Home";
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const DemoText = styled.div`
-  font-size: 3rem;
-`;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
-    <Container>
+    <>
       <GlobalStyle />
-      <DemoText>Hello World 🎉</DemoText>
-    </Container>
+      <ThemeProvider theme={theme}>
+        <RecoilRoot>
+          <QueryClientProvider client={queryClient}>
+            <Home />
+            {!!(process.env.NODE_ENV === "development") && (
+              <ReactQueryDevtools initialIsOpen={false} />
+            )}
+          </QueryClientProvider>
+        </RecoilRoot>
+      </ThemeProvider>
+    </>
   );
 }
 
