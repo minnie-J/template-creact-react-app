@@ -1,5 +1,6 @@
-import MenuItem from "components/molecules/MenuItem";
 import styled from "styled-components/macro";
+
+import MenuItem from "components/molecules/MenuItem";
 
 const Container = styled.aside<Pick<SidebarViewProps, "sidebarCollapsed">>`
   width: ${({ sidebarCollapsed }) => (sidebarCollapsed ? "55px" : "256px")};
@@ -7,7 +8,8 @@ const Container = styled.aside<Pick<SidebarViewProps, "sidebarCollapsed">>`
   display: flex;
   flex-direction: column;
 
-  background-color: #d0d1d6;
+  /* background-color: #d0d1d6; */
+  border-right: 1px solid #d0d1d6;
 
   transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
@@ -42,6 +44,13 @@ const SubMenuListArea = styled(MenuListArea)<{
   transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
 
+const BottomArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  border-top: 1px solid #d0d1d6;
+`;
+
 const CollapseIconArea = styled.div`
   height: inherit;
   width: 55px;
@@ -56,11 +65,23 @@ const CollapseIconArea = styled.div`
 
 const CollapseIcon = styled.div<Pick<SidebarViewProps, "sidebarCollapsed">>`
   font-size: 24px;
-  transform: ${({ sidebarCollapsed }) => sidebarCollapsed && "rotate(180deg)"};
+  transform: ${({ sidebarCollapsed }) => sidebarCollapsed && "rotateY(180deg)"};
   transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
 
 interface SidebarViewProps {
+  menuList: Array<{
+    path: string;
+    name: string;
+    icon: JSX.Element;
+    children: Array<{
+      path: string;
+      name: string;
+      depth: number;
+      parent: string;
+    }>;
+  }>;
+
   sidebarCollapsed: boolean;
 
   isRootMenuActive: (path: string) => boolean;
@@ -74,55 +95,8 @@ interface SidebarViewProps {
   onClickCollapseSidebar: () => void;
 }
 
-const menuList = [
-  {
-    path: "category1",
-    name: "Category 1",
-    icon: <span>🙂</span>,
-    children: [
-      {
-        path: "menu1",
-        name: "Menu 1",
-        depth: 1,
-        parent: "category1",
-      },
-    ],
-  },
-  {
-    path: "category2",
-    name: "Category 2",
-    icon: <span>🙂</span>,
-    children: [
-      {
-        path: "menu2",
-        name: "Menu 2",
-        depth: 1,
-        parent: "category2",
-      },
-    ],
-  },
-  {
-    path: "category3",
-    name: "Category 3",
-    icon: <span>🙂</span>,
-    children: [
-      {
-        path: "menu3",
-        name: "Menu 3",
-        depth: 1,
-        parent: "category3",
-      },
-      {
-        path: "menu4",
-        name: "Menu 4",
-        depth: 1,
-        parent: "category3",
-      },
-    ],
-  },
-];
-
 const SidebarView = ({
+  menuList,
   sidebarCollapsed,
   isRootMenuActive,
   isOpenedCategory,
@@ -168,6 +142,11 @@ const SidebarView = ({
           ))}
         </MenuListArea>
       </MainArea>
+      <BottomArea>
+        <CollapseIconArea onClick={onClickCollapseSidebar}>
+          <CollapseIcon sidebarCollapsed={sidebarCollapsed}>🏃‍♀️</CollapseIcon>
+        </CollapseIconArea>
+      </BottomArea>
     </Container>
   );
 };
