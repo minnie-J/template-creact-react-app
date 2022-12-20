@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - react-query
 - styled-components
 
----
+<br />
 
 ## 네이밍 컨벤션
 
@@ -38,13 +38,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - constants
 
----
+<br />
 
 ## 타입스크립트 파일 ts/tsx 확장자
 
 - **react component**만 **tsx 확장자** 사용 이외에는 ts 확장자 사용
 
----
+<br />
 
 ## 디렉토리 구조
 
@@ -57,10 +57,34 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 src
 +-- components
 │   +-- atoms
-│   │   +-- ReactCompo
-│   │       +-- ReactCompView.tsx
+│   │   +-- Button
+│   │       +-- ButtonView.tsx
+│   │       +-- index.tsx
+│   +-- molecules
+│   │   +-- ItemList
+│   │       +-- ItemListView.tsx
+│   │       +-- index.tsx
+│   +-- organisms
+│   │   +-- Sidebar
+│   │       +-- SidebarView.tsx
+│   │       +-- index.tsx
+│   +-- templates
+│   │   +-- HomeLayout.tsx
+│   +-- pages
+│   │   +-- Home
+│   │       +-- HomeView.tsx
 │   │       +-- index.tsx
 │   │
+```
+
+```typescript
+import Button from "components/atoms/Button";
+...
+return (
+  ...
+  <Button />
+  ...
+  );
 ```
 
 ### 나머지
@@ -69,22 +93,23 @@ src
 
 - 대분류는 ts파일 단위로 하고 import시 깔끔하게 `utils`까지만 가져오도록 index.ts로 묶는다
 
-```typescript
+```
 src
 +-- utils
 │   +-- workflow.ts
 │   +-- api.ts
 │   +-- index.ts
 │
+```
 
-// example
+```typescript
 import { apiUtil } from "utils";
 apiUtil.handler();
 ```
 
 #### case 2 - 하위 디렉토리가 구분 상 필요한 경우지만 되도록 이런 식의 depth가 들어가는 구조는 피할 것
 
-```typescript
+```
 src
 +-- apis
 │   +-- workflows
@@ -96,10 +121,10 @@ src
 │   │   +-- index.ts
 │   +-- index.ts
 │   │
+```
 
-
-// exmaple
-import { workflowAPI } from "api"
+```typescript
+import { workflowAPI } from "api";
 const listWorkflow = async () => await workflowAPI.listWorkflow();
 ```
 
@@ -119,4 +144,23 @@ src
 │   +-- theme.ts
 │   +-- index.ts
 │
+```
+
+<br />
+
+## 기타
+
+- 이미지 등 리소스의 경우 `public` 하위에 넣어 import 주소 단순화
+  > (참고) public 하위에 들어가는 파일들은 빌드 시 압축되지 않음
+
+```
+public
++-- assets
+│   +-- images
+│   │   +-- ic-arrow.svg
+│   │   +-- ic-circle.svg
+│   +-- fonts
+│   │   +-- NotoSansKRRegular.otf
+│   │   +-- NotoSansKRBold.otf
+│   │
 ```
