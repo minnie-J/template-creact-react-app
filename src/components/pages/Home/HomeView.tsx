@@ -1,5 +1,8 @@
+import styled from "styled-components/macro";
+
+import Wireframe from "components/atoms/Wireframe";
+import Sidebar from "components/organisms/Sidebar";
 import HomeLayout from "components/templates/HomeLayout";
-import styled from "styled-components";
 
 const Container = styled.section`
   height: inherit;
@@ -9,17 +12,14 @@ const Container = styled.section`
   overflow: hidden;
 `;
 
-const DemoText = styled.div`
-  font-size: 3rem;
-`;
-
 const HomeView = () => {
   return (
     <HomeLayout>
       <HomeLayout.HeaderArea>Header</HomeLayout.HeaderArea>
       <HomeLayout.MainArea>
         <Container>
-          <DemoText>Hello World 🎉</DemoText>
+          <Sidebar />
+          <Wireframe>Hello World 🎉</Wireframe>
         </Container>
       </HomeLayout.MainArea>
     </HomeLayout>

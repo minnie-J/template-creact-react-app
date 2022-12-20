@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "styled-components/macro";
 
 import { GlobalStyle, theme } from "styles";
+
 import Home from "./components/pages/Home";
 
 const queryClient = new QueryClient({

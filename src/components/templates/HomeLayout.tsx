@@ -1,5 +1,5 @@
 import { Children } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import Wireframe from "components/atoms/Wireframe";
 

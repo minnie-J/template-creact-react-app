@@ -37,6 +37,7 @@ const RootIconArea = styled.div`
   justify-content: center;
 
   padding-right: 5px;
+  padding-bottom: 4px;
 
   font-size: 20px;
 `;
@@ -70,7 +71,9 @@ const Title = styled.span<{ depth?: number; isActive?: boolean }>`
   font-weight: ${({ isActive }) => isActive && 700};
 `;
 
-const CollapseIcon = styled.div<{ collapsed?: boolean }>`
+const CollapseIconArea = styled.div<{ collapsed?: boolean }>`
+  height: 20px;
+
   font-size: 16px;
   transform: ${({ collapsed }) => collapsed && "rotate(180deg)"};
   transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -114,7 +117,7 @@ const MenuItemView = ({
             {name}
           </Title>
           {isRoot && (
-            <CollapseIcon collapsed={isOpenedCategory}>icon</CollapseIcon>
+            <CollapseIconArea collapsed={isOpenedCategory}>🔽</CollapseIconArea>
           )}
         </SelectableArea>
       </MenuArea>

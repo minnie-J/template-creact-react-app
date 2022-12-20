@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 type ApiHandler<K> = AxiosRequestConfig<K> & { url: string };
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "localhost:4000";
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 /**
  * NOTE
